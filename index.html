@@ -17,17 +17,17 @@
   padding:0;
 }
 
-html, body{
-  width:100%;
-  height:100%;
-}
-
 body{
   font-family:"Segoe UI", Arial, sans-serif;
   background:linear-gradient(-45deg,#0b62a4,#00c6ff,#0f172a);
   background-size:400% 400%;
   animation:bgMove 10s ease infinite;
-  overflow:hidden;
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:20px;
 }
 
 @keyframes bgMove{
@@ -39,17 +39,17 @@ body{
 /* Instructions button */
 .instr-btn{
   position:fixed;
-  top:30px;
-  left:30px;
+  top:15px;
+  left:15px;
   background:white;
   border:none;
-  padding:14px 22px;
-  border-radius:14px;
+  padding:10px 16px;
+  border-radius:12px;
   cursor:pointer;
   font-weight:700;
-  font-size:1.05rem;
+  font-size:0.9rem;
   color:var(--primary);
-  box-shadow:0 10px 25px rgba(0,0,0,0.25);
+  box-shadow:0 6px 18px rgba(0,0,0,0.25);
   z-index:3;
 }
 
@@ -57,11 +57,12 @@ body{
 .instructions{
   position:fixed;
   top:0;
-  left:-380px;
-  width:360px;
+  left:-100%;
+  width:80%;
+  max-width:350px;
   height:100vh;
   background:white;
-  padding:30px;
+  padding:25px;
   box-shadow:12px 0 35px rgba(0,0,0,0.3);
   transition:0.4s ease;
   z-index:4;
@@ -73,69 +74,49 @@ body{
 
 .instructions h3{
   color:var(--primary);
-  font-size:1.4rem;
-  margin-bottom:20px;
+  margin-bottom:15px;
 }
 
 .instructions ul li{
-  margin:14px 0;
-  font-size:1.1rem;
+  margin:12px 0;
+  font-size:1rem;
 }
 
 /* College Name */
 .college-name{
-  position:absolute;
-  top:70px;
-  width:100%;
-  text-align:center;
+  margin-top:80px;
   font-weight:900;
-  font-size:3.2rem;
+  font-size:clamp(1.5rem, 5vw, 2.5rem);
   color:white;
   text-shadow:0 4px 20px rgba(0,0,0,0.4);
 }
 
-/* College Subheading */
+/* Subheading */
 .college-sub{
-  position:absolute;
-  top:130px;
-  width:100%;
-  text-align:center;
-  font-size:1.5rem;
+  margin-top:10px;
+  font-size:clamp(1rem, 4vw, 1.3rem);
   color:#e5e7eb;
 }
 
-/* College Logo */
+/* Logo */
 .college-img{
-  position:absolute;
-  top:180px;
-  width:220px;
-  left:50%;
-  transform:translateX(-50%);
-  opacity:0;
-  animation:logoIn 1.6s forwards 0.4s;
+  margin-top:25px;
+  width:clamp(120px, 40vw, 200px);
+  animation:logoIn 1.6s forwards;
 }
 
 @keyframes logoIn{
-  from{opacity:0;transform:translateX(-50%) translateY(-40px)}
-  to{opacity:1;transform:translateX(-50%) translateY(0)}
-}
-
-/* Center Container */
-.center{
-  height:100vh;
-  width:100vw;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  from{opacity:0;transform:translateY(-30px)}
+  to{opacity:1;transform:translateY(0)}
 }
 
 /* Welcome Button */
 .welcome-btn{
-  margin-top:250px;   /* PERFECT CENTER BETWEEN LOGO & BOTTOM */
-  padding:20px 56px;
-  font-size:1.3rem;
+  margin-top:40px;
+  padding:16px 40px;
+  font-size:1.1rem;
   border:none;
-  border-radius:45px;
+  border-radius:40px;
   cursor:pointer;
   color:white;
   font-weight:700;
@@ -145,20 +126,19 @@ body{
   opacity:0;
 }
 
-/* Slide-down animation */
 @keyframes btnDrop{
-  from{opacity:0;transform:translateY(-40px)}
+  from{opacity:0;transform:translateY(-30px)}
   to{opacity:1;transform:translateY(0)}
 }
 
 @keyframes pulse{
   0%{box-shadow:0 0 0 0 rgba(0,198,255,0.7)}
-  70%{box-shadow:0 0 0 26px rgba(0,198,255,0)}
+  70%{box-shadow:0 0 0 20px rgba(0,198,255,0)}
   100%{box-shadow:0 0 0 0 rgba(0,198,255,0)}
 }
 
 .welcome-btn:hover{
-  transform:scale(1.12);
+  transform:scale(1.08);
 }
 </style>
 </head>
@@ -168,17 +148,17 @@ body{
 <button class="instr-btn" onclick="openInstr()">Instructions</button>
 
 <div class="instructions" id="instructions">
-  <span style="float:right;font-size:26px;cursor:pointer" onclick="closeInstr()">×</span>
+  <span style="float:right;font-size:22px;cursor:pointer" onclick="closeInstr()">×</span>
   <h3>Instructions</h3>
   <ul>
     <li>Click Welcome to continue</li>
     <li>Animated professional UI</li>
-    <li>Full screen responsive design</li>
+    <li>Fully mobile responsive</li>
   </ul>
 </div>
 
 <div class="college-name">
-  VKR, VNB &amp; AGK College of Engineering
+  VKR, VNB & AGK College of Engineering
 </div>
 
 <div class="college-sub">
@@ -187,9 +167,7 @@ body{
 
 <img src="logo.jpng.png" class="college-img" alt="College Logo">
 
-<div class="center">
-  <button class="welcome-btn" onclick="goLogin()">Welcome</button>
-</div>
+<button class="welcome-btn" onclick="goLogin()">Welcome</button>
 
 <script>
 function openInstr(){
